@@ -27,7 +27,9 @@ export class Cache<K, V> implements ICache<K, V> {
         }
     }
 
-    get(key: K): V {
-        return this.cache.get(key)
+    get(key: K): V | undefined {
+        if (this.cache.has(key))
+            return this.cache.get(key)
+        return undefined
     }
 }
