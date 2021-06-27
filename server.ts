@@ -24,23 +24,25 @@ app.get('/:user', (req, res): void => {
                     response["right"]["login"],
                     response["right"]["id"])
                     obj.add(response["right"]["login"], response["right"]["id"])
-                    res.status(200).send('200 Ok Add')
+                    res.status(200).send(JSON.stringify({'fromCache': false, 'login': response["right"]["login"],
+                        'id': response["right"]["id"]}))
             })
-
     }
     else {
         obj.add(req.params['user'], '')
-        res.status(200).send('200 Ok Add')
+        res.status(200).send(JSON.stringify({'fromCache': true, 'login': req.params['user'],
+            'id': obj.get(req.params['user'])}))
     }
-
 })
 
 app.get('/:user/getData', (req, res): void => {
     if (obj.get(req.params['user'])) {
-        res.status(200).send(String(`id  ${obj.get(req.params['user'])}`))
+        res.status(200).send(JSON.stringify({'fromCache': true, 'login': req.params['user'],
+            'id': obj.get(req.params['user'])}))
     }
     else
-        res.status(404).send('No in database')
+        res.status(404).send(JSON.stringify({'fromCache': false, 'login': 'not found',
+            'id': 'not found'}))
 })
 
 async function request(url: string): Promise<Either<DecodeError, User>> {
