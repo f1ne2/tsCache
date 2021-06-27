@@ -1,0 +1,1 @@
+web: tsc server.ts
