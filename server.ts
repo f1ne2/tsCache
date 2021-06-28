@@ -6,7 +6,7 @@ import { GithubClient } from "./GithubClient";
 export const app = express();
 dotenv.config();
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, process.env.HOST, () => {
   console.log(`Example app listening at http://localhost:${process.env.PORT}`);
 });
 
