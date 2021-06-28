@@ -11,14 +11,16 @@ app.listen(process.env.PORT, process.env.HOST, () => {
 });
 
 const obj = new Cache();
+const objGithubUser = new GithubClient();
 
 app.get("/:user", (req, res) => {
   if (!obj.get(req.params.user)) {
     const url: string = `https://api.github.com/users/${req.params.user}`;
-    new GithubClient().requestUser(url)
+    objGithubUser.requestUser(url)
       .then(response => {
         if (response._tag === "Right") {
           obj.add(response["right"]["login"], response["right"]["id"]);
+          objGithubUser.usernames.push(response["right"]["login"]);
           res.send(JSON.stringify({
             fromCache: false,
             login: response["right"]["login"],

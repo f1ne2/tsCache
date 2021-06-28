@@ -4,9 +4,9 @@ import { DecodeError } from "io-ts/Decoder";
 import { User } from "./User";
 
 export class GithubClient {
-  username: string;
+  usernames: string[];
   constructor() {
-    this.username = "";
+    this.usernames = [];
   }
 
   async requestUser(url: string): Promise<Either<DecodeError, User>> {
