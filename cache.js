@@ -14,14 +14,17 @@ var Cache = /** @class */ (function () {
         }
         else {
             this.keyList.unshift(key);
-            if (this.keyList.length > this.size)
+            if (this.keyList.length > this.size) {
                 this.cache["delete"](this.keyList.pop());
+            }
             this.cache.set(key, value);
         }
+        console.log(this.cache);
     };
     Cache.prototype.get = function (key) {
-        if (this.cache.has(key))
+        if (this.cache.has(key)) {
             return this.cache.get(key);
+        }
         return undefined;
     };
     return Cache;

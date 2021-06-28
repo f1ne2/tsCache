@@ -1,0 +1,41 @@
+env:
+  browser: true
+  es2021: true
+  node: true
+extends:
+  - airbnb-base
+  - "airbnb"
+  - "airbnb/hooks"
+  - "plugin:sonarjs/recommended"
+  - "eslint:recommended"
+  - "plugin:node/recommended"
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaVersion: 12
+  sourceType: module
+plugins:
+  - '@typescript-eslint'
+  - "no-loops"
+  - "sonarjs"
+rules: {
+  "semi": ["error", "always"],
+  "quotes": ["error", "double"],
+  "no-loops/no-loops": 2,
+  "node/no-unsupported-features/es-syntax": [
+    "error",
+    { ignores: ["modules"] },
+  ],
+  "no-unused-vars": "off",
+  "import/prefer-default-export": "off",
+  "node/exports-style": ["error", "module.exports"],
+   "no-console": "off",
+   "arrow-parens": "off",
+   "dot-notation": "off",
+   "lines-between-class-members": "off",
+   "class-methods-use-this": "off",
+   "node/no-missing-import": "off",
+   "import/extensions": "off",
+   "import/no-unresolved": "off",
+   "no-underscore-dangle": "off",
+         "node/no-unpublished-import": "off"
+}
